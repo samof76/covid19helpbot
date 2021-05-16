@@ -92,28 +92,28 @@ class Covid19helpbot(BotPlugin):
         else:
             return f'Hello {args.name}, I hear your favorite number is {args.favorite_number}.'
 
-    def _all_hospitals(args):
+    def _all_hospitals(self, args):
         city = args.city
         return f'All hospitals in {city}'
     
-    def _o2_hospitals(args):
+    def _o2_hospitals(self, args):
         city = args.city
         return f'O2 hospitals in {city}'
 
-    def _ventilator_hospitals(args):
+    def _ventilator_hospitals(self, args):
         city = args.city
         return f'Ventilator hospitals in {city}'
     
-    def _icu_hospitals(args):
+    def _icu_hospitals(self, args):
         city = args.city
         return f'ICU hospitals in {city}'
 
-    def _hospital_data(args):
+    def _hospital_data(self, args):
         atleast_switcher = {
-            "all"           : _all_hospitals,
-            "O2"            : _o2_hospitals,
-            "Ventilator"    : _ventilator_hospitals,
-            "ICU"           : _icu_hospitals
+            "all"           : self._all_hospitals,
+            "O2"            : self._o2_hospitals,
+            "Ventilator"    : self._ventilator_hospitals,
+            "ICU"           : self._icu_hospitals
         }
 
         _get_hospitals = atleast_switcher.get(args.atleast, lambda: 'Invalid choice')
@@ -131,8 +131,7 @@ class Covid19helpbot(BotPlugin):
         --atleast Ventilatore   : Hospitals with at least Ventilator beds available
         --atleast ICU           : Hospitals with at least ICU  beds available
         """
-        
-        return _hospital_data(args)
+        return self._hospital_data(args)
     
     
 
