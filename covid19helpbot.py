@@ -112,7 +112,7 @@ class Covid19helpbot(BotPlugin):
         atleast_switcher = {
             "all"           : _all_hospitals,
             "O2"            : _o2_hospitals,
-            "Ventilator"    : _ventilator_hospitals.
+            "Ventilator"    : _ventilator_hospitals,
             "ICU"           : _icu_hospitals
         }
 
