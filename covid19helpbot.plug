@@ -1,0 +1,13 @@
+[Core]
+name = Covid19HelpBot
+module = covid19helpbot
+
+[Documentation]
+description = This bot will help you find things you require during this pandemic.
+
+[Python]
+version = 3
+
+[Errbot]
+min = 6.1.7
+
