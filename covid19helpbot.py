@@ -92,32 +92,6 @@ class Covid19helpbot(BotPlugin):
         else:
             return f'Hello {args.name}, I hear your favorite number is {args.favorite_number}.'
 
-    @arg_botcmd('city', type=str)
-    @arg_botcmd('--atleast', type=str, default="all", unpack_args=False)
-    def hospitals(self, message, args):
-        """
-        This command finds the hospitals with beds in the give city.
-
-        Default is get all hospitals with any type of beds available.
-        --atleast O2            : Hospitals with at least O2 beds available
-        --atleast Ventilatore   : Hospitals with at least Ventilator beds available
-        --atleast ICU           : Hospitals with at least ICU  beds available
-        """
-        
-        return _hostpital_data(args)
-    
-    def _hospital_data(args):
-        atleast_switcher = {
-            "all"           : _all_hospitals,
-            "O2"            : _o2_hospitals,
-            "Ventilator"    : _ventilator_hospitals.
-            "ICU"           : _icu_hospitals
-        }
-
-        _get_hospitals = atleast_switcher.get(args.atleast, lambda: 'Invalid choice')
-
-        return _get_hospitals(args)
-    
     def _all_hospitals(args):
         city = args.city
         return f'All hospitals in {city}'
@@ -133,4 +107,32 @@ class Covid19helpbot(BotPlugin):
     def _icu_hospitals(args):
         city = args.city
         return f'ICU hospitals in {city}'
+
+    def _hospital_data(args):
+        atleast_switcher = {
+            "all"           : _all_hospitals,
+            "O2"            : _o2_hospitals,
+            "Ventilator"    : _ventilator_hospitals.
+            "ICU"           : _icu_hospitals
+        }
+
+        _get_hospitals = atleast_switcher.get(args.atleast, lambda: 'Invalid choice')
+
+        return _get_hospitals(args)
+
+    @arg_botcmd('city', type=str)
+    @arg_botcmd('--atleast', type=str, default="all", unpack_args=False)
+    def hospitals(self, message, args):
+        """
+        This command finds the hospitals with beds in the give city.
+
+        Default is get all hospitals with any type of beds available.
+        --atleast O2            : Hospitals with at least O2 beds available
+        --atleast Ventilatore   : Hospitals with at least Ventilator beds available
+        --atleast ICU           : Hospitals with at least ICU  beds available
+        """
+        
+        return _hospital_data(args)
+    
+    
 
