@@ -116,7 +116,7 @@ class Covid19helpbot(BotPlugin):
             "ICU"           : self._icu_hospitals
         }
 
-        _get_hospitals = atleast_switcher.get(args.atleast, lambda: 'Invalid choice')
+        _get_hospitals = atleast_switcher.get(args.atleast, lambda :'Invalid choice')
 
         return _get_hospitals(args)
 
